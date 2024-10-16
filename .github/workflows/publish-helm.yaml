@@ -43,7 +43,7 @@ jobs:
       - name: Package and push helm chart
         run: |
           helm package ./charts/example --version ${{ steps.set-variables.outputs.VERSION }}
-          helm push ./example-chart-${{ steps.set-variables.outputs.VERSION }}.tgz oci://${{ steps.set-variables.outputs.REPOSITORY }}/charts
+          helm push ./example-chart-${{ steps.set-variables.outputs.VERSION }}.tgz oci://${{ steps.set-variables.outputs.REPOSITORY }}/chart
 
   publish-helm-chart:
     permissions:
