@@ -3,6 +3,16 @@ entries:
   example:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-10-18T11:35:05.622026021Z"
+    description: A Helm chart for Kubernetes
+    digest: dd32f5029865275f077d7f408a39803ca4cafb9f9b3176e1b52a3472ea6291cc
+    name: example
+    type: application
+    urls:
+    - https://trevex.github.io/example/example-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-10-16T18:24:39.006214861Z"
     description: A Helm chart for Kubernetes
     digest: dfdf0ecbd10849bef5178c59a12f73074177ee5aaa7f3e8a66f955ac94742e67
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://trevex.github.io/example/example-0.2.3.tgz
     version: 0.2.3
-generated: "2024-10-16T18:24:39.005603133Z"
+generated: "2024-10-18T11:35:05.621451874Z"
