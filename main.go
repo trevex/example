@@ -2,19 +2,43 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/jackc/pgx/v5"
 )
 
 func main() {
 	server := &http.Server{Addr: ":8080"}
+	pgURL := os.Getenv("POSTGRES_URL")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "hello world\n")
+		if pgURL == "" {
+			io.WriteString(w, "hello world\n")
+			return
+		}
+
+		ctx := r.Context()
+		conn, err := pgx.Connect(ctx, pgURL)
+		if err != nil {
+			io.WriteString(w, fmt.Sprintf("postgres connection failed: %v\n", err))
+			return
+		}
+		defer conn.Close(ctx)
+
+		err = conn.Ping(ctx)
+		if err != nil {
+			io.WriteString(w, fmt.Sprintf("postgres ping failed: %v\n", err))
+			return
+		}
+
+		io.WriteString(w, "hello from postgres\n")
+
 	})
 
 	go func() {
